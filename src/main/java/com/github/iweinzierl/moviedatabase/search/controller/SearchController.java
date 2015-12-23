@@ -2,6 +2,7 @@ package com.github.iweinzierl.moviedatabase.search.controller;
 
 import com.github.iweinzierl.moviedatabase.search.domain.Movie;
 import com.google.common.base.Function;
+import com.google.common.base.Strings;
 import com.google.common.collect.Collections2;
 import de.inselhome.moviesearch.api.domain.MoviePreview;
 import de.inselhome.moviesearch.tmdb.TmdbSearchProvider;
@@ -10,10 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -27,7 +25,7 @@ public class SearchController {
     @Autowired
     private TmdbSearchProvider tmdbSearchProvider;
 
-    @RequestMapping(path = "/api/movie/search", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(path = "/api/movie", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity search(@RequestParam(value = "title", required = true) String title) {
         LOG.info("Search movie with title: {}", title);
 
@@ -51,5 +49,33 @@ public class SearchController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @RequestMapping(path = "/api/movie/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity get(@PathVariable String id) {
+        if (Strings.isNullOrEmpty(id)) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        de.inselhome.moviesearch.api.domain.Movie movie = tmdbSearchProvider.get(id);
+
+        if (movie != null) {
+            LOG.info("Found movie by id '{}': {}", id, movie);
+
+            Movie result = new Movie();
+            result.setId(movie.getId());
+            result.setCover(movie.getCover());
+            result.setDescription(movie.getDescription());
+            result.setGenres(movie.getGenres());
+            result.setLength(movie.getLength());
+            result.setOriginalTitle(movie.getOriginalTitle());
+            result.setPublishDate(movie.getPublishDate());
+            result.setTitle(movie.getTitle());
+
+            return ResponseEntity.ok(result);
+        } else {
+            LOG.warn("Did not find movie by id: {}", id);
+            return ResponseEntity.notFound().build();
+        }
     }
 }
