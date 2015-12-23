@@ -45,6 +45,7 @@ public class SearchController {
                 }
             });
 
+            LOG.info("Found {} search results for: {}", searchResult.size(), title);
             return ResponseEntity.ok(searchResult);
         }
 
