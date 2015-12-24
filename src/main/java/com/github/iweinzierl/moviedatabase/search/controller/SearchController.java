@@ -40,6 +40,7 @@ public class SearchController {
                     movie.setId(input.getMovieId());
                     movie.setCover(input.getCover());
                     movie.setTitle(input.getTitle());
+                    movie.setDescription(input.getDescription());
 
                     return movie;
                 }
