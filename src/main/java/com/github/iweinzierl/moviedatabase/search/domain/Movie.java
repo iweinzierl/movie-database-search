@@ -1,5 +1,10 @@
 package com.github.iweinzierl.moviedatabase.search.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -14,6 +19,9 @@ public class Movie implements de.inselhome.moviesearch.api.domain.Movie {
     private String cover;
     private Set<String> genres;
     private int length;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate publishDate;
 
     @Override
