@@ -38,7 +38,7 @@ public class SearchController {
                 public Movie apply(@Nullable MoviePreview input) {
                     Movie movie = new Movie();
                     movie.setId(input.getMovieId());
-                    movie.setCover(input.getCover());
+                    movie.setCoverUrl(input.getCover());
                     movie.setTitle(input.getTitle());
                     movie.setDescription(input.getDescription());
 
@@ -66,12 +66,12 @@ public class SearchController {
 
             Movie result = new Movie();
             result.setId(movie.getId());
-            result.setCover(movie.getCover());
+            result.setCoverUrl(movie.getCoverUrl());
             result.setDescription(movie.getDescription());
             result.setGenres(movie.getGenres());
             result.setLength(movie.getLength());
             result.setOriginalTitle(movie.getOriginalTitle());
-            result.setPublishDate(movie.getPublishDate());
+            result.setPublished(movie.getPublished());
             result.setTitle(movie.getTitle());
 
             return ResponseEntity.ok(result);

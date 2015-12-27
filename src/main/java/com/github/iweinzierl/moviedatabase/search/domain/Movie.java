@@ -16,13 +16,13 @@ public class Movie implements de.inselhome.moviesearch.api.domain.Movie {
     private String originalTitle;
 
     private String description;
-    private String cover;
+    private String coverUrl;
     private Set<String> genres;
     private int length;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate publishDate;
+    private LocalDate published;
 
     @Override
     public void setId(String id) {
@@ -64,14 +64,12 @@ public class Movie implements de.inselhome.moviesearch.api.domain.Movie {
         return description;
     }
 
-    @Override
-    public void setCover(String cover) {
-        this.cover = cover;
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 
-    @Override
-    public String getCover() {
-        return cover;
+    public String getCoverUrl() {
+        return coverUrl;
     }
 
     @Override
@@ -94,13 +92,11 @@ public class Movie implements de.inselhome.moviesearch.api.domain.Movie {
         return length;
     }
 
-    @Override
-    public void setPublishDate(LocalDate publishDate) {
-        this.publishDate = publishDate;
+    public void setPublished(LocalDate published) {
+        this.published = published;
     }
 
-    @Override
-    public LocalDate getPublishDate() {
-        return publishDate;
+    public LocalDate getPublished() {
+        return published;
     }
 }
