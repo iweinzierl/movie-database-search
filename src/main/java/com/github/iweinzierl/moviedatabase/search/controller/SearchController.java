@@ -47,6 +47,12 @@ public class SearchController {
             });
 
             LOG.info("Found {} search results for: {}", searchResult.size(), title);
+            if (LOG.isDebugEnabled()) {
+                for (Movie movie : searchResult) {
+                    LOG.debug("  -> {}", movie.getTitle());
+                }
+            }
+
             return ResponseEntity.ok(searchResult);
         }
 
