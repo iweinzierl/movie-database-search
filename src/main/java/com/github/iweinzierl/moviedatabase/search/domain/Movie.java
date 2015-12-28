@@ -18,7 +18,7 @@ public class Movie implements de.inselhome.moviesearch.api.domain.Movie {
     private String description;
     private String coverUrl;
     private Set<String> genres;
-    private int length;
+    private Integer length;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
