@@ -27,7 +27,7 @@
         <repository>
             <id>inselhome.nexus</id>
             <name>Internal Repository on inselhome.org</name>
-            <url>http://inselhome.org:8081/nexus/content/repositories</url>
+            <url>http://inselhome.org:8081/nexus/content/repositories/snapshots</url>
         </repository>
     </repositories>
 

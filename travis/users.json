@@ -1,0 +1,9 @@
+[
+   {
+      "roles" : [
+         "USER"
+      ],
+      "password" : "testtest",
+      "username" : "test"
+   }
+]
