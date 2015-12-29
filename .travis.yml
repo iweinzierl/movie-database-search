@@ -2,5 +2,8 @@ language: java
 
 before_install:
   - pip install --user codecov
+  - ./install_travis_dependencies.sh
 after_success:
   - codecov
+jdk:
+  - oraclejdk8
