@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>moviedatabase-search</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Spring Boot service to search for movies</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
