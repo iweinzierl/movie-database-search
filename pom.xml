@@ -31,6 +31,17 @@
         </repository>
     </repositories>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://maven.iweinzierl.de/repository/maven-snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>http://maven.iweinzierl.de/repository/maven-releases</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
