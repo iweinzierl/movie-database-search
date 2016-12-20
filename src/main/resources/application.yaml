@@ -1,0 +1,20 @@
+server:
+  port: 9001
+
+spring:
+  mvc:
+    dispatch-options-request: true
+
+tmdb:
+  api:
+    key: 653ce9ba629b16be9a1f5b1e4faf3697
+    language: de
+    baseUrl: http://api.themoviedb.org/
+
+---
+
+spring:
+  profiles: production
+
+server:
+  port: 8081
