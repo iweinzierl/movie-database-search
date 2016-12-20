@@ -1,6 +1,8 @@
 package com.github.iweinzierl.moviedatabase.search.controller;
 
 import com.github.iweinzierl.moviedatabase.search.domain.Movie;
+import com.github.iweinzierl.springbootlogging.annotation.HttpLogging;
+import com.github.iweinzierl.springbootlogging.annotation.LoggingOption;
 import com.google.common.base.Strings;
 import de.inselhome.moviesearch.api.domain.MoviePreview;
 import de.inselhome.moviesearch.tmdb.TmdbSearchProvider;
@@ -24,6 +26,7 @@ public class SearchController {
     @Autowired
     private TmdbSearchProvider tmdbSearchProvider;
 
+    @HttpLogging(options = {LoggingOption.REQUEST, LoggingOption.RESPONSE})
     @RequestMapping(path = "/api/movie", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity search(@RequestParam(value = "title", required = true) String title) {
         LOG.info("Search movie with title: {}", title);
@@ -58,6 +61,7 @@ public class SearchController {
         return ResponseEntity.notFound().build();
     }
 
+    @HttpLogging(options = {LoggingOption.REQUEST, LoggingOption.RESPONSE})
     @RequestMapping(path = "/api/movie/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity get(@PathVariable String id) {
         if (Strings.isNullOrEmpty(id)) {
