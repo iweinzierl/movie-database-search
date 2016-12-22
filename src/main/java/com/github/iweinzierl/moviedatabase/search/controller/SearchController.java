@@ -42,6 +42,8 @@ public class SearchController {
                         movie.setCoverUrl(moviePreview.getCover());
                         movie.setTitle(moviePreview.getTitle());
                         movie.setDescription(moviePreview.getDescription());
+                        movie.setLength(moviePreview.getLength());
+                        movie.setPublished(moviePreview.getPublishDate());
                         movie.setGenres(((moviePreview.getGenres().parallelStream().collect(Collectors.toSet()))));
 
                         return movie;
